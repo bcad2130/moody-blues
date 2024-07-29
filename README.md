@@ -1,6 +1,10 @@
 # moody-blues
 Created with CodeSandbox
 
+build with:
+
+yarn build
+
 Run server on 3000 with:
 
 serve -s build
