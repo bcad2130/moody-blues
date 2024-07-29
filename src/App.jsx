@@ -1,13 +1,20 @@
 import React from 'react'
-import {GlobalStyle} from './styles'
 import Header from './components/Header'
+import Footer from './components/Footer'
+import ImgBox from './components/ImgBox'
+import {GlobalStyle, ImageContainer, Wrapper} from './styles'
 
 const App = () => {
-
   return (
     <>
-      < GlobalStyle/>
-      < Header/>
+      < GlobalStyle />
+      < Header />
+      < Footer />
+      < Wrapper >
+        < ImageContainer >
+          < ImgBox />
+        < /ImageContainer >
+      </ Wrapper >
     </>
   );
 }
