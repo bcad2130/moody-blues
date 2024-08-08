@@ -13,16 +13,16 @@ export const GlobalStyle = createGlobalStyle`
   body {
     color: #fbfbfb;
     height: 100vh;
-    weight: 100vw;
+    width: 100vw;
     margin: 0;
     padding: 0;
     overflow: hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    background-color: #2828e6;
     font-family: "Jacquarda Bastarda 9", serif;
     font-weight: 400;
     font-style: normal;
+    background-color: black;
   }
 `
 
@@ -37,8 +37,8 @@ export const Marginals = css`
 
 export const Wrapper = styled.section.attrs(({$color}) => ({
     style: {
-        backgroundColor: `hsl(${$color}, 79%, 53%)`
-    }
+        backgroundColor: `${$color}`,
+    },
 }))`
     display: flex;
     justify-content: center;

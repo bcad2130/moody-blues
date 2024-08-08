@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ImgBox from './components/ImgBox'
+import ColorPicker from './components/ColorPicker'
 import {GlobalStyle, ImageContainer, Wrapper} from './styles'
 
 const matrix = [
@@ -16,6 +17,7 @@ const matrix = [
 const App = () => {
   const [distance, setDistance] = useState(1);
 
+  const [textColor, setTextColor] = useState('#000000')
 
   const easing = (num) => Math.pow(num, 3);
 
@@ -36,19 +38,22 @@ const App = () => {
     calculateDistance([touches[0].clientX, touches[0].clientY])
   }
 
-  // const backgroundColor = '#ebafab'
-
-  // console.log(240 - distance * 40);
+  const [wrapperColor, setWrapperColor] = useState('#ebafab')
 
   return (
     <>
       < GlobalStyle />
-      < Header />
-      < Footer />
+      < Header textColor={textColor} />
+      < Footer textColor={textColor} />
+      < ColorPicker 
+          wrapperColor={wrapperColor} 
+          setWrapperColor={setWrapperColor} 
+          textColor={textColor} 
+          setTextColor={setTextColor}/>
       < Wrapper 
-        onMouseMove={handleMove} 
-        onTouchMove={handleTouchMove} 
-        $color={Math.round(240 - distance * 40)}
+          onMouseMove={handleMove} 
+          onTouchMove={handleTouchMove} 
+          $color={wrapperColor}
       >
         < ImageContainer $isTogether={distance < 0.001}>
           {matrix.map(([x,y], index) => (

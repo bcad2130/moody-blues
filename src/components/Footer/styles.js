@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import {Marginals} from '../../styles'
 
-export const Footer = styled.footer`
+export const Footer = styled.footer.attrs(({$textColor}) => ({
+  style: {
+    color: `${$textColor}`
+  }
+}))`
   ${Marginals}
   bottom: 0;
   justify-content: space-between;
@@ -31,7 +35,7 @@ export const H2Middle = styled(H2)`
 
   &::after {
     content: '';
-    background-color: #fbfbfb;
+    background-color: ${(props) => props.$textColor};
     display: block;
     position: absolute;
     height: 2px;
