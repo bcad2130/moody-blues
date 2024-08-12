@@ -14,7 +14,7 @@ export const Panel = styled.div.attrs(({$backgroundColor}) => ({
   padding: 5px 10px;
   position: fixed;
   color: #000;
-  right: ${({$showColorPicker}) => ($showColorPicker ? '0' : '-250px')};
+  right: ${({$showColorPicker}) => ($showColorPicker ? '0' : '-220px')};
 
   @media (max-width: 700px) {
     top: unset;
@@ -51,7 +51,7 @@ export const Arrow = styled(ArrowSVG).attrs(({$showColorPicker, $textColor}) => 
     fill: `${$textColor}`
   }  
 }))`
-  transform: ${($showColorPicker) => ($showColorPicker ? 'rotate(0.5turn)' : 'none' )};
+  transform: ${({$showColorPicker}) => ($showColorPicker ? 'rotate(0.5turn)' : 'none' )};
   padding: 20px 10px;
   cursor: pointer;
 
