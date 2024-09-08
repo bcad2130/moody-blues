@@ -1,7 +1,8 @@
 import React from 'react'
 import * as Yup from 'yup'
-import {Formik, Form, Field, useField} from 'formik' 
-import {Input, Label, Error, Submit} from './styles'
+import {Formik, Field, useField} from 'formik' 
+import {Input, Label, Error, Submit, StyledField, Row, FormContainer, FlexContainer, TicketSelector} from './styles'
+import {P} from '../../styles'
 
 const InputComponent = ({label, ...props}) => {
   const [field, meta] = useField(props)
@@ -14,60 +15,68 @@ const InputComponent = ({label, ...props}) => {
   )
 }
 
-const FormComponent = ({handleSuccess}) => {
+const FormComponent = ({handleSuccess, cartTix, setCartTix}) => {
   const schema = Yup.object().shape({
-    name: Yup.string().required('Required field'),
-    email: Yup.string()
-              .email('Must be a valid email address')
-              .required('Required field')
+    cartTix: Yup.number()
   })
 
   return (
     <Formik
       initialValues={{
-        name: '',
-        email: ''
+        cartTix: 1
       }}
       onSubmit={handleSuccess}
       validationSchema={schema}
     >
       {() => (
-        <Form>
-          <InputComponent name="name" type="type" label="Name" autoComplete="off" />
-          <InputComponent name="email" type="email" label="Email" autoComplete="off" />
+        <FormContainer>
+          <Label>Select quantity:</Label>
+          <TicketSelector>
+            <StyledField as="select" name="tickets" value={cartTix} onChange={(event) => (setCartTix(event.target.value))} >
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                <option value={num} key={num}>
+                  {num} Ticket{num > 1 && 's'}
+                </option>
+              ))}
+            </StyledField>
 
-          <Submit type="submit">Submit</Submit>
-        </Form>
+            <FlexContainer>
+              <Row>
+                <P>
+                  <Label>Subtotal:</Label>
+                </P>
+                <P>
+                  ${cartTix * 12}.00
+                </P>
+              </Row>
+
+              <Row>
+                <P>
+                  <Label>Fees:</Label>
+                </P>
+                <P>
+                  $5.00
+                </P>
+              </Row>
+
+              <Row>
+                <P>
+                  <Label>Total:</Label>
+                </P>
+                <P>
+                  ${cartTix * 12 + 5}.00
+                </P>
+              </Row>
+            </FlexContainer>
+
+
+            <Submit type="submit">Add to cart</Submit>
+          </TicketSelector>
+        </FormContainer>
       )}
     </Formik>
   )
 }
-
-
-
-          // <label>Name: </label>
-          // <Field name="name" type="text" autoComplete="off" />
-          // {touched.name && errors && <div>{errors.name}</div>}
-          
-          // <label>Email address: </label>
-          // <Field name="email" type="email" autoComplete="off" />
-          // {touched.email && errors && <div>{errors.email}</div>}
-
-          // <button type="submit">Submit</button>
-
-
-
-
-          //{props && <p>prooops</p>}
-//
-          // <InputComponent name="name" type="type" label="Name" />
-          // <InputComponent name="name" type="type" label="Name" />
-          //{props.touched.name && props.errors && <div>{props.errors.name}</div>}
-          //{props.touched.email && props.errors && <div>{props.errors.email}</div>}
-
-          // {touched.name && errors && <div>{errors.name}</div>}
-          // {touched.email && errors && <div>{errors.email}</div>}
-
 
 export default FormComponent
   

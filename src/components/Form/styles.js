@@ -1,4 +1,50 @@
 import styled from 'styled-components'
+import {Field, Form} from 'formik' 
+
+export const TicketSelector = styled.div`
+  flex-grow: 2;
+
+  @media (max-width: 700px) {
+    margin-top: 10px;
+  }
+`
+
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const FormContainer = styled(Form)`
+  display: flex;
+  gap: 100px;
+  margin-top: 48px;
+
+  @media (max-width: 700px) {
+    display: block;
+    margin-top: 24px;
+    width: 220px;
+  }
+`
+
+export const Row = styled.div`
+  color: gray;
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+`
+
+export const StyledField = styled(Field)`
+  border: 2px solid #000;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding 4px;
+  width: 75%;
+  margin-bottom: 8px;
+
+  @media (max-width: 700px) {
+    font-size: 14px;
+  }
+`
 
 export const Input = styled.input`
   border: 2px solid #000;
